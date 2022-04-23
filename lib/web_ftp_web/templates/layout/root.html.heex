@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <%= csrf_meta_tag() %>
+    <%= live_title_tag assigns[:page_title] || "WebFTP" %>
+    <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/app.css")}/>
+    <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js")}></script>
+  </head>
+  <body>
+    <%= @inner_content %>
+    <footer>
+      <h3>WebFTP</h3>
+      <ul>
+        <li>
+          <a href="https://www.flaticon.com/free-icons/folder" title="folder icons">Folder icons created by Good Ware - Flaticon</a>
+        </li>
+        <li>
+          <a href="https://www.flaticon.com/free-icons/file" title="file icons">File icons created by Pixel perfect - Flaticon</a>
+        </li>
+      </ul>
+    </footer>
+  </body>
+</html>
