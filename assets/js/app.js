@@ -82,18 +82,45 @@ function download(e) {
 
 let fileForm = document.getElementById("user_file");
 let submitButton = document.getElementById("submit_file");
+let progressBarContainer = document.getElementById("progress-bar-container");
+let progressBarText = document.getElementsByClassName("progress-bar-text-percent")[0];
+let progressBarFill = document.getElementsByClassName("progress-bar-fill")[0];
+
+
+
+
+const axios = require('axios').default;
 submitButton.addEventListener("click", function () {
+    progressBarContainer.style.display = "block";
+    progressBarText.innerHTML = "0%"
+    progressBarFill.style.width = "0%";
+
     let file = fileForm.files[0];
     let formData = new FormData();
     let path = document.querySelector("meta[name='path']").getAttribute("content")
 
     formData.append("file", file);
-    formData.append("path", path)
-    fetch('/api/upload', {
+    formData.append("path", path);
+    axios.request({
+        method: "post", 
+        url: "/api/upload", 
+        headers: {
+            'X-CSRF-Token': csrfToken
+        },
+        data: formData, 
+        onUploadProgress: (p) => {
+            progressBarText.innerHTML = ((p.loaded / p.total) * 100).toFixed(2) + "%";
+            progressBarFill.style.width = ((p.loaded / p.total) * 100).toFixed(2) + "%";;
+        }
+    }).then (data => {
+        progressBarText.innerHTML = "100%"
+        progressBarContainer.style.display = "none";
+    })
+    /*fetch('/api/upload', {
         method: "POST",
         headers: {
             'X-CSRF-Token': csrfToken
         },
         body: formData
-    });
+    });*/
 });

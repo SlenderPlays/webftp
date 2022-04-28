@@ -44,11 +44,40 @@ footer h3 {
   cursor: pointer;
 }
 
+#progress-bar-container {
+  display: none;
+}
+
+.progress-bar {
+  width: 30vw;
+  height: 20px;
+  background-color: rgb(80%, 80%, 80%);
+
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+}
+
+.progress-bar-fill {
+  width: 50%;
+  height: 20px;
+  background-color: hsl(120, 80%, 60%);
+  
+  grid-column: 1/1;
+  grid-row: 1/1;
+}
+
+.progress-bar-text-percent {
+  font-size: small;
+
+  justify-self: center;
+  grid-column: 1/1;
+  grid-row: 1/1;
+}
 
 .bold {
   font-weight: bold;
 }
-
 
 
 /* Alerts and form errors used by phx.new */

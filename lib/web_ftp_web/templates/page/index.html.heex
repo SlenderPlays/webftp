@@ -10,6 +10,12 @@
   <input class="form-control" id="user_file" type="file">
   <input class="form-control" id="submit_file" type="submit">
 </div>
+<div id="progress-bar-container">
+  <div class="progress-bar">
+    <div class="progress-bar-fill"></div>
+    <p class="progress-bar-text-percent">0%</p>
+  </div>
+</div>
 <section style="margin:0 2vw">
   <h3>Server Files</h3>
   <%= if @path != [] do %>
